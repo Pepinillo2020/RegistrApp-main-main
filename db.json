@@ -37,6 +37,13 @@
       "title": "Calidad",
       "description": "Software",
       "date": "2021-05-11T15:50:00"
+    },
+    {
+      "id": "cdcf",
+      "title": "Lenguaje",
+      "description": "Lenguaje2",
+      "date": "2021-05-01T06:30:00",
+      "asistencia": null
     }
   ],
   "Asistencia": [
@@ -87,6 +94,30 @@
       "classId": "948c",
       "studentId": "12345",
       "timestamp": "2024-11-24T23:32:59.590Z"
+    },
+    {
+      "id": "",
+      "classId": "948c",
+      "studentId": "12345",
+      "timestamp": "2024-11-25T02:26:59.273Z"
+    },
+    {
+      "id": "",
+      "classId": "4959",
+      "studentId": "12345",
+      "timestamp": "2024-11-25T02:27:02.591Z"
+    },
+    {
+      "id": "",
+      "classId": "948c",
+      "studentId": "12345",
+      "timestamp": "2024-11-25T02:27:24.689Z"
+    },
+    {
+      "id": "",
+      "classId": "948c",
+      "studentId": "12345",
+      "timestamp": "2024-11-25T02:27:26.155Z"
     }
   ]
 }

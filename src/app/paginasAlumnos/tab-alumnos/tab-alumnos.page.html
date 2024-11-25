@@ -13,15 +13,24 @@
   </ion-card>
 </ion-content>
 
+<!-- Barra de navegación inferior -->
 <ion-tabs>
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar slot="bottom" class="custom-tab-bar">
     <ion-tab-button tab="escanear-codigo-qr">
       <ion-icon name="scan-outline"></ion-icon>
-      Escanear código QR
+      <ion-label>Escanear código QR</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="ver-reglamento">
       <ion-icon name="reader-outline"></ion-icon>
-      Ver reglamento
+      <ion-label>Reglamento</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="ver-clases">
+      <ion-icon name="book"></ion-icon>
+      <ion-label>Clases</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="ver-historial-clase">
+      <ion-icon name="time"></ion-icon>
+      <ion-label>Historial Asistencias</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

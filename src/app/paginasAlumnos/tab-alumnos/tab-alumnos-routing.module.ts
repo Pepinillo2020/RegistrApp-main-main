@@ -16,6 +16,14 @@ const routes: Routes = [
         path: 'ver-reglamento',
         loadChildren: () => import('./../../paginasAlumnos/ver-reglamento/ver-reglamento.module').then( m => m.VerReglamentoPageModule)
       },
+      {
+        path: 'ver-clases',
+        loadChildren: () => import('../ver-clases/ver-historial.module').then( m => m.VerHistorialPageModule)
+      },
+      {
+        path: 'ver-historial-clase',
+        loadChildren: () => import('../ver-historial-clase/ver-historial-clase.module').then( m => m.VerHistorialClasePageModule)
+      },
     ]
   }
 ];

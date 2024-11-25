@@ -3,8 +3,6 @@ import { AttendanceService } from 'src/app/services/attendance.service';
 import { Attendance } from 'src/app/models/attendance.model';
 import { slideInAnimationDerAIzq } from 'src/app/animations/slide-in-animation/slide-in-animation.page';
 import { AnimationController } from '@ionic/angular';
-import { ClassService } from 'src/app/services/class.service';
-import { AuthService } from 'src/app/auth.service'; // Importa el AuthService
 
 
 @Component({
@@ -20,9 +18,6 @@ export class VerHistorialClasePage implements OnInit {
   constructor(
     private animationCtrl: AnimationController,
     private attendanceService: AttendanceService,
-    private classService: ClassService,
-    private authService: AuthService 
-
 
   ) {}
 
