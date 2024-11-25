@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
 
   field:string="";
 
-  constructor(public toastController: ToastController, private router:Router, private authService: AuthService, private animationCtrl: AnimationController) { }
+  constructor(public toastController: ToastController, private router:Router, private authService: AuthService, public animationCtrl: AnimationController) { }
 
   ngOnInit() {
   }

@@ -8,6 +8,10 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class AuthService {
 
+  static login(login: any) {
+    throw new Error('Method not implemented.');
+  }
+
   private authTokenKey = 'authToken';
   private roleKey = 'userRole';  
   private apiUrl = 'http://localhost:3000/usuarios'; // Asegúrate de que esta URL sea correcta
