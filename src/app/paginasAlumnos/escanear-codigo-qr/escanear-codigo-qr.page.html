@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Escanear Código QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="openCamera()">Abrir Cámara</ion-button>
+
+  <!-- Mostrar la imagen capturada -->
+  <div *ngIf="image">
+    <img [src]="image" alt="Imagen capturada" />
+  </div>
+</ion-content>

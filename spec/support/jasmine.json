@@ -1,0 +1,15 @@
+{
+
+  
+  "spec_dir": "src/app/login/login.page.spec.ts",
+  "spec_files": [
+    "**/*[sS]pec.ts"
+  ],
+  "helpers": [
+    "helpers/**/*.?(m)js"
+  ],
+  "env": {
+    "stopSpecOnExpectationFailure": false,
+    "random": true
+  }
+}

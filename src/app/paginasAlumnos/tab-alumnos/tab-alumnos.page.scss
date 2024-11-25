@@ -1,0 +1,35 @@
+.custom-tab-bar {
+    background: linear-gradient(135deg, #6A89CC, #4A69BD); /* Gradiente para el fondo */
+    border-top: 1px solid #ffffff40; /* Línea superior semitransparente */
+    color: #fff;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave en la parte superior */
+    
+    ion-tab-button {
+      --color-selected: #FFD32D; /* Color destacado cuando se selecciona */
+      --color: #ffffff; /* Color de texto predeterminado */
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.2s ease-in-out; /* Animación al hacer hover */
+  
+      ion-icon {
+        font-size: 22px;
+        margin-bottom: 5px;
+      }
+  
+      ion-label {
+        font-size: 12px;
+      }
+  
+      &:hover {
+        transform: scale(1.1); /* Efecto de escala al pasar el mouse */
+      }
+  
+      &.tab-selected {
+        color: #FFD32D; /* Color del texto cuando está seleccionado */
+      }
+    }
+  }
+  

@@ -1,0 +1,92 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nombre": "admin",
+      "usuario": "admin",
+      "email": "correofalso@gmail.com",
+      "contraseña": "admin123",
+      "rol": "admin"
+    },
+    {
+      "id": "2",
+      "nombre": "Felipe",
+      "usuario": "FMA07",
+      "email": "fe.mayoral@duocuc.cl",
+      "contraseña": "felipe123",
+      "rol": "alumno"
+    },
+    {
+      "id": "3",
+      "nombre": "Benjamin",
+      "usuario": "pepinill",
+      "email": "be.penailillo@duocuc.cl",
+      "contraseña": "benjamin123",
+      "rol": "profesor"
+    }
+  ],
+  "classes": [
+    {
+      "id": "948c",
+      "title": "Mates",
+      "description": "Estadistica",
+      "date": "2021-05-12T15:50:00"
+    },
+    {
+      "id": "4959",
+      "title": "Calidad",
+      "description": "Software",
+      "date": "2021-05-11T15:50:00"
+    }
+  ],
+  "Asistencia": [
+    {
+      "id": "2",
+      "classId": "948c",
+      "studentId": "12345",
+      "timestamp": "2024-10-28T23:53:25.634Z"
+    },
+    {
+      "id": "2",
+      "classId": "4959",
+      "studentId": "12345",
+      "timestamp": "2024-10-28T23:53:27.978Z"
+    },
+    {
+      "id": "2",
+      "classId": "948c",
+      "studentId": "12345",
+      "timestamp": "2024-11-24T19:31:09.161Z"
+    },
+    {
+      "id": "2",
+      "classId": "948c",
+      "studentId": "12345",
+      "timestamp": "2024-11-24T19:32:01.358Z"
+    },
+    {
+      "id": "2",
+      "classId": "4959",
+      "studentId": "12345",
+      "timestamp": "2024-11-24T20:43:44.293Z"
+    },
+    {
+      "id": "2",
+      "classId": "948c",
+      "studentId": "12345",
+      "timestamp": "2024-11-24T21:22:36.022Z"
+    },
+    {
+      "id": "2",
+      "classId": "948c",
+      "studentId": "12345",
+      "timestamp": "2024-11-24T22:19:12.753Z"
+    },
+    {
+      "id": "",
+      "classId": "948c",
+      "studentId": "12345",
+      "timestamp": "2024-11-24T23:32:59.590Z"
+    }
+  ]
+}
