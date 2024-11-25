@@ -11,6 +11,7 @@ export class AuthService {
   private authTokenKey = 'authToken';
   private roleKey = 'userRole';  
   private apiUrl = 'http://localhost:3000/usuarios'; // Asegúrate de que esta URL sea correcta
+  private nombreUsuario = 'nombreUsuario';
 
   constructor(private http: HttpClient) {}
 
@@ -22,6 +23,7 @@ export class AuthService {
         if (user) {
           this.storeToken('token'); // Guarda un token simulado
           this.storeRole(user.rol); // Guarda el rol del usuario
+          this.storeNombreUsuario(user.nombre);
           return true; // Autenticación exitosa
         } else {
           return false; // Autenticación fallida
@@ -48,8 +50,16 @@ export class AuthService {
     localStorage.setItem(this.roleKey, role); // Guarda el rol del usuario en localStorage
   }
 
+  storeNombreUsuario(usuario: string): void{
+    localStorage.setItem(this.nombreUsuario, usuario);
+  }
+
   getRole(): string {
   return localStorage.getItem(this.roleKey) || ''; // Retorna vacío si no hay rol
+  }
+
+  getNombreUsuario(): string{
+    return localStorage.getItem(this.nombreUsuario) || '';
   }
 
   isAuthenticated(): boolean {
@@ -60,16 +70,6 @@ export class AuthService {
   removeToken(): void {
     localStorage.removeItem(this.authTokenKey); // Elimina el token
     localStorage.removeItem(this.roleKey); // Elimina el rol del usuario
-  }
-
-  getUsuario() {
-    if (!this.apiUrl) {
-      const userData = localStorage.getItem('usuarios');
-      if (userData) {
-        this.apiUrl = JSON.parse(userData);
-      }
-    }
-    return this.apiUrl;
+    localStorage.removeItem(this.nombreUsuario);
   }
 }
-
