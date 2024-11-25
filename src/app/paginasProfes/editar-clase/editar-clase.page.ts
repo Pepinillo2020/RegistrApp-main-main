@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClassService } from 'src/app/services/class.service';
 import { Class } from 'src/app/models/class.model';
-import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-editar-clase',
@@ -22,8 +21,7 @@ export class EditarClasePage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private classService: ClassService,
-    private alertController: AlertController // Importa el AlertController aquí
+    private classService: ClassService
   ) {}
 
   ngOnInit() {
@@ -47,34 +45,8 @@ export class EditarClasePage implements OnInit {
     });
   }
 
-  // Método para confirmar la edición de la clase
-  async confirmEdit() {
-    const alert = await this.alertController.create({
-      header: 'Confirmar Edición',
-      message: '¿Estás seguro de que deseas editar esta clase?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Edición cancelada');
-          }
-        },
-        {
-          text: 'Editar',
-          handler: () => {
-            this.submitEdit(); // Llama al método para realizar la edición
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
-
-  // Método para manejar el envío del formulario (ahora llamado internamente)
-  private submitEdit() {
+  // Método para manejar el envío del formulario
+  onSubmit() {
     if (this.classId && this.classForm.valid) {
       const updatedClass: Class = {
         id: this.classId,  // El ID sigue siendo alfanumérico
@@ -95,10 +67,5 @@ export class EditarClasePage implements OnInit {
     } else {
       console.error('El formulario no es válido.');
     }
-  }
-
-  // Método para manejar el clic del botón de edición
-  onSubmit() {
-    this.confirmEdit(); // Mostrar el diálogo de confirmación antes de editar
   }
 }

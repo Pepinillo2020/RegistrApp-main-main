@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassService } from '../../services/class.service';
 import { Class } from '../../models/class.model';
-import { AnimationController, AlertController } from '@ionic/angular';
+import { AnimationController } from '@ionic/angular';
 import { slideInAnimationAbajArriba } from 'src/app/animations/slide-in-animation/slide-in-animation.page';
 
 @Component({
@@ -12,11 +12,7 @@ import { slideInAnimationAbajArriba } from 'src/app/animations/slide-in-animatio
 export class ClasesPage implements OnInit {
   classes: Class[] = [];
 
-  constructor(
-    private classService: ClassService, 
-    private animationCtrl: AnimationController, 
-    private alertController: AlertController // Importamos el AlertController
-  ) {}
+  constructor(private classService: ClassService, private animationCtrl: AnimationController) {}
 
   ngOnInit() {
     this.loadClasses();
@@ -28,41 +24,13 @@ export class ClasesPage implements OnInit {
     });
   }
 
-  // Método para confirmar la eliminación de una clase
-  async confirmDelete(classId: string) {
-    const alert = await this.alertController.create({
-      header: 'Confirmar Eliminación',
-      message: '¿Estás seguro de que deseas eliminar esta clase?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Eliminación cancelada');
-          }
-        },
-        {
-          text: 'Eliminar',
-          handler: () => {
-            this.deleteClass(classId); // Llama al método para eliminar la clase
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
-
-  // Método para eliminar una clase
   deleteClass(id: string) {
     this.classService.deleteClass(id).subscribe(() => {
       this.loadClasses();
     });
   }
 
-  // Método que se ejecuta cuando la vista entra (hook de Ionic)
-  async ionViewDidEnter() { 
+  async ionViewDidEnter(){ //NO CAMBIAR NOMBRE ionViewDidEnter es un hook, no un método. Si lo cambias deja de funcionar la animación
     const animation = slideInAnimationAbajArriba(this.animationCtrl);
     await animation.play();
   }

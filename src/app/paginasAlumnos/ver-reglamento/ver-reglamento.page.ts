@@ -12,6 +12,8 @@ export class VerReglamentoPage implements OnInit {
   constructor(private animationCtrl: AnimationController) { }
 
   pdfSrc = "./../assets/reglamento.pdf"
+  currentPage = 1;
+  totalPages = 27;
   zoom: number = 1;
 
   ngOnInit() {
@@ -25,6 +27,18 @@ export class VerReglamentoPage implements OnInit {
 
   addZoom(){
     this.zoom += 0.5;
+  }
+
+  nextPage(){
+    if (this.currentPage < this.totalPages){
+      this.currentPage++
+    }
+  }
+
+  prevPage(){
+    if (this.currentPage > 1) {
+      this.currentPage--
+    }
   }
 
   //ANIMACION

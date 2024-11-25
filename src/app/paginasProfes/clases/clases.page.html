@@ -17,7 +17,7 @@
 
       </ion-label>
       <ion-button [routerLink]="['/editar-clase', class.id]">Editar</ion-button>
-      <ion-button color="danger" (click)="confirmDelete(class.id)">Eliminar</ion-button>
+      <ion-button color="danger" (click)="deleteClass(class.id)">Eliminar</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

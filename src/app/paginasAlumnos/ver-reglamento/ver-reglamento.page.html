@@ -1,21 +1,26 @@
-<div class="row">
-  <div class="col-12">
-    <div class="quality-select">
-      <form action="#">
-        <div class="input-counter" style="text-align: center;">
-          <button (click)="substractZoom()" class="minus-btn"><i class="la la-minus"></i></button>
-          <button (click)="addZoom()" class="plus-btn"><i class="la la-plus"></i></button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<pdf-viewer [src]="pdfSrc"
+<div style="height: 85vh; width: 100%;">
+  <pdf-viewer [src]="pdfSrc"
               [render-text]="true"
+              [show-all]="false"
               [original-size]="false"
               [zoom-scale]="'page-width'"
               [zoom]="zoom"
               [stick-to-page]="true"
-              [page]=""
+              [page]="currentPage"
               style="width: 100%; height: 100%"
   ></pdf-viewer>
+</div>
+<div class="row" style="align-self: center;">
+  <div>
+    <ion-button (click)="prevPage()" shape="block" *ngIf="currentPage > 1">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+      Anterior
+    </ion-button>
+  </div>
+  <div>
+    <ion-button (click)="nextPage()" *ngIf="currentPage < totalPages">
+      Siguiente
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </div>
+</div>

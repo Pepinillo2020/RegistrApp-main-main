@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimationController } from '@ionic/angular';
 import { slideInAnimationDerAIzq } from 'src/app/animations/slide-in-animation/slide-in-animation.page';
-import { ClassService } from 'src/app/services/class.service';
-import { AttendanceService } from 'src/app/services/attendance.service';
-import { Class } from 'src/app/models/class.model';
-import { Attendance } from 'src/app/models/attendance.model';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-tab-alumnos',
@@ -12,40 +9,28 @@ import { Attendance } from 'src/app/models/attendance.model';
   styleUrls: ['./tab-alumnos.page.scss'],
 })
 export class TabAlumnosPage implements OnInit {
-  classes: Class[] = [];
-  studentId: string = '12345'; // Supongamos que tenemos el ID del estudiante actual
+
+  nombreUsuario: string = '';
 
   constructor(
     private animationCtrl: AnimationController,
-    private classService: ClassService,
-    private attendanceService: AttendanceService
-  ) {}
+    private authService: AuthService,
+  ) { }
 
   ngOnInit() {
-    this.obtenerClases();
+    this.mostrarNombreUsuario();
   }
 
-  async ionViewDidEnter() {
+  async ionViewDidEnter(){ //NO CAMBIAR NOMBRE ionViewDidEnter es un hook, no un método. Si lo cambias deja de funcionar la animación
     const animation = slideInAnimationDerAIzq(this.animationCtrl);
     await animation.play();
   }
 
-  obtenerClases() {
-    this.classService.getClasses().subscribe((data) => {
-      this.classes = data;
-    });
+  mostrarNombreUsuario(){
+    this.nombreUsuario = this.authService.getNombreUsuario();
   }
 
-  registrarAsistencia(clase: Class) {
-    const attendance: Attendance = {
-      id: '', // Puedes generar un ID único aquí o dejar que el backend lo haga
-      classId: clase.id,
-      studentId: this.studentId,
-      timestamp: new Date().toISOString() // Formato ISO para la marca de tiempo
-    };
-
-    this.attendanceService.registerAttendance(attendance).subscribe(() => {
-      alert(`Asistencia registrada para la clase: ${clase.title}`);
-    });
+  cerrarSesion(){
+    this.authService.logout();
   }
 }

@@ -1,16 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <div>
+      <ion-title style="text-align: center; margin-right: -40%;">RegistrApp</ion-title>
+      <ion-img src="assets/logo-duoc-12.png" style="height: 10%; width: 10%; margin-right: 30%;"></ion-img>
+      <ion-button (click)="cerrarSesion()" [routerLink]="['/login']">cerrar sesion</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-title>Bienvenido {{ nombreUsuario }}</ion-card-title>
+  </ion-card>
+</ion-content>
 <ion-tabs>
-  <ion-tab-bar slot="bottom" class="custom-tab-bar">
+  <ion-tab-bar slot="bottom">
     <ion-tab-button tab="crear-codigo-qr">
       <ion-icon name="qr-code-outline"></ion-icon>
-      <ion-label>Crear código QR</ion-label>
+      Crear código QR
     </ion-tab-button>
     <ion-tab-button tab="crear-clase">
       <ion-icon name="book-outline"></ion-icon>
-      <ion-label>Crear clase</ion-label>
+      Crear clase
     </ion-tab-button>
     <ion-tab-button tab="clases">
       <ion-icon name="book-outline"></ion-icon>
-      <ion-label>Ver clases</ion-label>
+      Ver clases
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
