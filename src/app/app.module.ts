@@ -7,15 +7,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { RouterModule } from '@angular/router'; // Asegúrate de importar esto.
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, PdfViewerModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    PdfViewerModule,
+    RouterModule // Agregado aquí para habilitar directivas relacionadas con el enrutador.
+  ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    provideHttpClient()
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
 

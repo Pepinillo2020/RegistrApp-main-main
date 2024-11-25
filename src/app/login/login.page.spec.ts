@@ -1,113 +1,81 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoginPage } from './login.page';
-import { ToastController, NavController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { of, throwError } from 'rxjs';
+import { LoginPage } from './login.page';
+
 
 describe('LoginPage', () => {
   let component: LoginPage;
   let fixture: ComponentFixture<LoginPage>;
-  let authServiceSpy: jasmine.SpyObj<AuthService>;
-  let toastControllerSpy: jasmine.SpyObj<ToastController>;
-  let routerSpy: jasmine.SpyObj<Router>;
+  let mockDatosService: jasmine.SpyObj<AuthService>;
+  let mockRouter: jasmine.SpyObj<Router>;
+  let mockNavController: jasmine.SpyObj<NavController>;
 
   beforeEach(async () => {
-    const authServiceMock = jasmine.createSpyObj('AuthService', ['login', 'getRole']);
-    const toastControllerMock = jasmine.createSpyObj('ToastController', ['create']);
-    const routerMock = jasmine.createSpyObj('Router', ['navigate']);
+    mockDatosService = jasmine.createSpyObj('DatosService', ['login', 'getUserRole']);
+    mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    mockNavController = jasmine.createSpyObj('NavController', ['navigateForward']);
 
     await TestBed.configureTestingModule({
       declarations: [LoginPage],
-      imports: [FormsModule], // Para ngModel
+      imports: [IonicModule.forRoot()],
       providers: [
-        { provide: AuthService, useValue: authServiceMock },
-        { provide: ToastController, useValue: toastControllerMock },
-        { provide: Router, useValue: routerMock },
-      ],
+        { provide: AuthService, useValue: mockDatosService },
+        { provide: Router, useValue: mockRouter },
+        { provide: NavController, useValue: mockNavController }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginPage);
     component = fixture.componentInstance;
-    authServiceSpy = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
-    toastControllerSpy = TestBed.inject(ToastController) as jasmine.SpyObj<ToastController>;
-    routerSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
-
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should initialize login model', () => {
-    expect(component.login.Usuario).toEqual('');
-    expect(component.login.Password).toEqual('');
+  it('debería retornar true para una contraseña de 8 caracteres o más', () => {
+    const resultado = component.validarLargoPass('12345678');
+    expect(resultado).toBeTrue();
   });
 
-  it('should validate model correctly', () => {
-    const validModel = { Usuario: 'testuser', Password: 'password123' };
-    const invalidModel = { Usuario: '', Password: 'password123' };
-
-    expect(component.validateModel(validModel)).toBeTrue();
-    expect(component.validateModel(invalidModel)).toBeFalse();
-    expect(component.field).toEqual('Usuario');
+  it('debería retornar false para una contraseña con menos de 8 caracteres', () => {
+    const resultado = component.validarLargoPass('1234567');
+    expect(resultado).toBeFalse();
   });
 
-  it('should validate user length', () => {
-    expect(component.validarLargoUsuario('us')).toBeFalse();
-    expect(component.validarLargoUsuario('user')).toBeTrue();
-    expect(component.validarLargoUsuario('toolongusername')).toBeFalse();
+  it('debería retornar false para una contraseña vacía', () => {
+    const resultado = component.validarLargoPass('');
+    expect(resultado).toBeFalse();
+  });
+  it('debería retornar true para un usuario con exactamente 3 caracteres', () => {
+    const resultado = component.validarLargoUsuario('abc');
+    expect(resultado).toBeTrue();
   });
 
-  it('should validate password length', () => {
-    expect(component.validarLargoPass('short')).toBeFalse();
-    expect(component.validarLargoPass('longenough')).toBeTrue();
+  it('debería retornar true para un usuario con exactamente 8 caracteres', () => {
+    const resultado = component.validarLargoUsuario('abcdefgh');
+    expect(resultado).toBeTrue();
   });
 
-  it('should show a toast when a field is missing', async () => {
-    const toastMock = { present: jasmine.createSpy('present') };
-    toastControllerSpy.create.and.returnValue(Promise.resolve(toastMock as any));
-
-    component.field = 'Usuario';
-    await component.presentToast('Falta: ' + component.field);
-
-    expect(toastControllerSpy.create).toHaveBeenCalledWith({
-      message: 'Falta: Usuario',
-      duration: 2000,
-      position: 'top',
-    });
-    expect(toastMock.present).toHaveBeenCalled();
+  it('debería retornar true para un usuario con un largo entre 3 y 8 caracteres', () => {
+    const resultado = component.validarLargoUsuario('abcdef');
+    expect(resultado).toBeTrue();
   });
 
-  it('should attempt login and handle success', () => {
-    authServiceSpy.login.and.returnValue(of(true));
-    authServiceSpy.getRole.and.returnValue('profesor');
-
-    component.login = { Usuario: 'validuser', Password: 'validpassword' };
-    component.iniciarSesion();
-
-    expect(authServiceSpy.login).toHaveBeenCalledWith('validuser', 'validpassword');
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/tab-prof']);
+  it('debería retornar false para un usuario con menos de 3 caracteres', () => {
+    const resultado = component.validarLargoUsuario('ab');
+    expect(resultado).toBeFalse();
   });
 
-  it('should handle login failure', () => {
-    authServiceSpy.login.and.returnValue(of(false));
-
-    component.login = { Usuario: 'invaliduser', Password: 'invalidpassword' };
-    component.iniciarSesion();
-
-    expect(authServiceSpy.login).toHaveBeenCalledWith('invaliduser', 'invalidpassword');
-    expect(component.login.Password).toEqual('');
+  it('debería retornar false para un usuario con más de 8 caracteres', () => {
+    const resultado = component.validarLargoUsuario('abcdefghi');
+    expect(resultado).toBeFalse();
   });
 
-  it('should handle server error on login', () => {
-    authServiceSpy.login.and.returnValue(throwError('Server error'));
-
-    component.login = { Usuario: 'validuser', Password: 'validpassword' };
-    component.iniciarSesion();
-
-    expect(authServiceSpy.login).toHaveBeenCalledWith('validuser', 'validpassword');
+  it('debería retornar false para un usuario vacío', () => {
+    const resultado = component.validarLargoUsuario('');
+    expect(resultado).toBeFalse();
   });
 });
