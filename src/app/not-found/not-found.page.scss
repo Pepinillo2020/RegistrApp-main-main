@@ -1,0 +1,26 @@
+.not-found-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 4.5rem;
+    color: #ff4757;
+    margin: 0;
+  }
+  
+  p {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+  
+  ion-button {
+    --background: #1e90ff;
+    --background-activated: #3742fa;
+    --border-radius: 50px;
+  }
+  

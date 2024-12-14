@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Historial de Asistencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Mensaje si no hay registros de asistencia -->
+  <ion-item *ngIf="attendances.length === 0">
+    <ion-label>
+      <h2>No hay registros de asistencia para esta clase.</h2>
+    </ion-label>
+  </ion-item>
+
+  <!-- Lista de asistencias -->
+  <ion-list *ngIf="attendances.length > 0">
+    <ion-item *ngFor="let attendance of attendances">
+      <ion-label>
+        <h2>Asistencia del estudiante: {{ attendance.studentId }}</h2>
+        <p>Clase ID: {{ attendance.classId }}</p>
+        <p>Fecha: {{ attendance.timestamp | date: 'medium' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,10 @@
+<ion-content>
+  <ion-card id="cartaQR">
+    <div style="justify-content: center; font-size: 200%;">
+      Escaneen el siguiente código con sus celulares:
+    </div>
+  </ion-card>
+  <div style="align-content: center, ; text-align: center; align-self: center;" *ngIf="qrCodeUrl">
+    <img [src]="qrCodeUrl"/>  <!-- Display the QR code -->
+  </div>
+</ion-content>
