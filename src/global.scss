@@ -40,6 +40,17 @@ div {
     display: flex;
 }
 
+ion-button::part(native){
+    background-color: #ffb71b;
+    color: #0e1c2c;
+    font-weight: bold;
+}
+
+ion-card{
+    background-color: #33393f;
+    color: whitesmoke;
+}
+
 ion-content.backgroundTest2{
     --background: none;
     background-image: url('assets/Duoc.JPG');
@@ -50,13 +61,35 @@ ion-content.backgroundTest2{
 
 ion-content.tab-background{
     --background: none;
-    background-image: url('assets/Duoc.JPG');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: #0e1c2c;
 }
 
-ion-button::part(native){
+ion-icon{
+    color: whitesmoke;
+}
+
+ion-item::part(native){
+    background-color: #33393f;
+    color: whitesmoke;
+    border-bottom: 1px solid #000;
+}
+
+ion-tab-bar{
+    background-color: #33393f;
+}
+
+ion-tab-button{
     background-color: #ffb71b;
+    border-left: 1px solid #33393f;
+    border-right: 1px solid #33393f;
     color: #0e1c2c;
+}
+
+ion-toolbar{
+    --background: none;
+    background-color: #000;
+}
+
+.toolbar-container{
+    background-color: black !important;
 }
