@@ -48,6 +48,14 @@ ion-content.backgroundTest2{
     background-position: center;
 }
 
+ion-content.tab-background{
+    --background: none;
+    background-image: url('assets/Duoc.JPG');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 ion-button::part(native){
     background-color: #ffb71b;
     color: #0e1c2c;
