@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -14,14 +14,21 @@ export class AuthService {
 
   private authTokenKey = 'authToken';
   private roleKey = 'userRole';  
-  private apiUrl = 'http://localhost:3000/usuarios'; // Asegúrate de que esta URL sea correcta
+  private apiUrl = 'https://76192139-5628-4007-9beb-ceff7b82d048-00-3keu6cfe7yrs2.janeway.replit.dev/usuarios'; // Asegúrate de que esta URL sea correcta
   private nombreUsuario = 'nombreUsuario';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    })
+  };
 
   constructor(private http: HttpClient) {}
 
   // Método para verificar credenciales
   login(usuario: string, contraseña: string): Observable<boolean> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
+    return this.http.get<any[]>(this.apiUrl, this.httpOptions).pipe(
       map((usuarios: any[]) => {
         const user = usuarios.find(u => u.usuario === usuario && u.contraseña === contraseña);
         if (user) {
